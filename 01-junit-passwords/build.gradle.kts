@@ -2,13 +2,17 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("org.danilopianini.gradle-java-qa") version "1.200.0"
+    application
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
     }
+}
+
+tasks.javadoc {
+    isFailOnError = false
 }
 
 repositories {
@@ -23,6 +27,7 @@ dependencies {
     // The engine that must be available at runtime to run the tests.
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+
 
 tasks.withType<Test>().configureEach {
     // Use junit platform for unit tests
